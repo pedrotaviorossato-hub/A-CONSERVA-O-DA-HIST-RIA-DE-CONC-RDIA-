@@ -1,456 +1,14 @@
-O ChatGPT disse:
-Claro. Aqui está o código completo pronto, com a galeria diminuída e o restante mantido.
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cemitério dos Caboclos - SEPE</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --dark-blue: #1a365d;
-            --light-bg: #f8f9fa;
-            --accent-green: #6b8e6b;
-            --text-dark: #2d3748;
-            --text-gray: #718096;
-            --border-light: #e2e8f0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: #ffffff;
-        }
-
-        /* Navegação */
-        nav {
-            background-color: var(--dark-blue);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, #2d5f8d 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(107, 142, 107, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        header > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        header h1 {
-            font-family: 'Georgia', serif;
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.95);
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* Breadcrumb */
-        .breadcrumb {
-            padding: 1rem 2rem;
-            background-color: var(--light-bg);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .breadcrumb a {
-            color: var(--accent-green);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Seções */
-        section {
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        section h2 {
-            font-family: 'Georgia', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-green);
-        }
-
-        section h3 {
-            color: var(--dark-blue);
-            font-size: 1.3rem;
-            margin: 2rem 0 1rem 0;
-            font-weight: 600;
-        }
-
-        section p {
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .highlight {
-            background-color: var(--light-bg);
-            border-left: 4px solid var(--accent-green);
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-
-        .highlight p {
-            margin: 0;
-        }
-
-        /* GALERIA MENOR */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-        }
-
-        .gallery-item {
-            background: linear-gradient(
-                135deg,
-                var(--accent-green) 0%,
-                #5a7a5a 100%
-            );
-            width: 150%;
-            height: 200px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.15);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-4px);
-        }
-
-        .gallery-label {
-            text-align: center;
-            color: var(--text-dark);
-            font-weight: 600;
-            margin-top: 0.7rem;
-            font-size: 0.9rem;
-        }
-
-        /* Info Cards */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            padding: 2rem;
-            background-color: var(--light-bg);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-green);
-        }
-
-        .info-card h4 {
-            color: var(--dark-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .info-card p {
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        /* Tech Stack */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .tech-card {
-            padding: 1.5rem;
-            border: 2px solid var(--accent-green);
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .tech-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-card h4 {
-            color: var(--dark-blue);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-card p {
-            font-size: 0.85rem;
-            margin: 0;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline-item {
-            padding-left: 3rem;
-            padding-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px var(--accent-green);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 12px;
-            width: 2px;
-            height: calc(100% + 8px);
-            background-color: var(--border-light);
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .timeline-date {
-            color: var(--accent-green);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .timeline-title {
-            color: var(--dark-blue);
-            font-weight: 600;
-            margin: 0.5rem 0;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-blue);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .footer-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .footer-section {
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        /* Responsivo */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
-            }
-
-            .gallery-item {
-                height: 140px;
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 2rem 1rem;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            section h2 {
-                font-size: 1.3rem;
-            }
-
-            .info-grid,
-            .tech-grid,
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-item {
-                height: 140px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
-    <!-- Navegação -->
     <nav>
         <div class="nav-container">
             <a href="/index.html" class="nav-logo">← SEPE</a>
@@ -463,18 +21,16 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
         </div>
     </nav>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <div class="container">
-            <a href="sepe_project_website.html">SEPE</a>
+            <a href="/index.html">SEPE</a>
             /
-            <span style="color: var(--text-gray);">
+            <span>
                 Cemitério dos Caboclos
             </span>
         </div>
     </div>
 
-    <!-- Header -->
     <header>
         <h1>Cemitério dos Caboclos</h1>
 
@@ -484,10 +40,8 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
         </p>
     </header>
 
-    <!-- Conteúdo -->
     <main class="container">
 
-        <!-- Introdução -->
         <section id="introducao">
             <h2>Sobre o Cemitério</h2>
 
@@ -518,7 +72,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
             </p>
         </section>
 
-        <!-- Informações Práticas -->
         <section id="informacoes-praticas">
             <h2>Informações Práticas</h2>
 
@@ -552,7 +105,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
             </div>
         </section>
 
-        <!-- História e Contexto -->
         <section id="historia">
             <h2>História e Contexto</h2>
 
@@ -584,7 +136,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
             </p>
         </section>
 
-        <!-- Processo de Digitalização -->
         <section id="digitalizacao">
             <h2>Processo de Digitalização</h2>
 
@@ -639,7 +190,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
             </div>
         </section>
 
-        <!-- Timeline -->
         <section id="timeline">
             <h2>Cronograma do Projeto</h2>
 
@@ -707,7 +257,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
             </div>
         </section>
 
-        <!-- Galeria -->
         <section id="galeria">
 
             <h2>Galeria de Documentação</h2>
@@ -735,7 +284,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
 
         </section>
 
-        <!-- Benefícios -->
         <section id="beneficios-preservacao">
 
             <h2>Benefícios da Preservação Digital</h2>
@@ -778,7 +326,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
 
         </section>
 
-        <!-- Equipe -->
         <section id="equipe">
 
             <h2>Equipe de Pesquisa</h2>
@@ -819,14 +366,13 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
 
         </section>
 
-        <!-- Contato -->
         <section id="contato">
 
             <h2>Mais Informações</h2>
 
             <div class="highlight">
 
-                <h3 style="margin-top: 0;">
+                <h3>
                     Interessado em Saber Mais?
                 </h3>
 
@@ -836,7 +382,7 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
                     entre em contato com:
                 </p>
 
-                <p style="margin-top: 1rem;">
+                <p>
                     <strong>
                         Instituto Federal Catarinense – Campus Concórdia
                     </strong><br>
@@ -850,7 +396,6 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
 
     </main>
 
-    <!-- Footer -->
     <footer>
 
         <div class="footer-content">
@@ -890,7 +435,7 @@ Claro. Aqui está o código completo pronto, com a galeria diminuída e o restan
 
             </div>
 
-            <p style="margin-top: 2rem; font-size: 0.85rem;">
+            <p>
                 Instituto Federal de Educação, Ciência e Tecnologia Catarinense<br>
                 Campus Concórdia — Santa Catarina, Brasil
             </p>

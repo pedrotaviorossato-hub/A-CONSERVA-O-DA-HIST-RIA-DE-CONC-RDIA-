@@ -1,458 +1,14 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEPE - Conservação Digital da História de Concórdia</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --dark-blue: #1a365d;
-            --light-bg: #f8f9fa;
-            --accent-green: #6b8e6b;
-            --text-dark: #2d3748;
-            --text-gray: #718096;
-            --border-light: #e2e8f0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: #ffffff;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, #2d5f8d 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(107, 142, 107, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -5%;
-            width: 300px;
-            height: 300px;
-            background-color: rgba(107, 142, 107, 0.08);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        header > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header-badge {
-            display: inline-block;
-            background-color: var(--accent-green);
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
-
-        header h1 {
-            font-family: 'Georgia', serif;
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.95);
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Seções */
-        section {
-            padding: 4rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        section h2 {
-            font-family: 'Georgia', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--dark-blue);
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-green);
-        }
-
-        /* Objetivo */
-        .objective-text {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-        }
-
-        .keywords {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-        }
-
-        .keyword-tag {
-            background-color: var(--light-bg);
-            color: var(--accent-green);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--accent-green);
-        }
-
-        /* Benefícios */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .benefit-card {
-            padding: 2rem;
-            background-color: var(--light-bg);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-green);
-        }
-
-        .benefit-card h3 {
-            color: var(--dark-blue);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .benefit-card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Escopo */
-        .scope-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .scope-item {
-            padding: 1.5rem;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            background-color: white;
-        }
-
-        .scope-item h4 {
-            color: var(--accent-green);
-            font-size: 1rem;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .scope-item p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Locais Preservados */
-        .preserved-places-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .place-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .place-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(26, 54, 93, 0.1);
-        }
-
-        /* IMAGEM */
-        .place-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(
-                135deg,
-                var(--accent-green) 0%,
-                #5a7a5a 100%
-            );
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .place-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* TEXTO DO CARD DA IMAGEM */
-        .place-content {
-            padding: 2rem;
-            background-color: #ffffff;
-        }
-
-        .place-content h3 {
-            color: #163b68;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .place-location {
-            color: #3f6f3f;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .place-description {
-            color: #374151;
-            font-size: 1rem;
-            line-height: 1.75;
-            margin-bottom: 1.5rem;
-        }
-
-        .place-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem;
-            background-color: var(--light-bg);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-        }
-
-        .place-techs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tech-badge {
-            background-color: white;
-            color: var(--accent-green);
-            border: 1px solid var(--accent-green);
-            padding: 0.3rem 0.75rem;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        /* Autores */
-        .authors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .author-card {
-            padding: 1.5rem;
-            background-color: var(--light-bg);
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .author-card h4 {
-            color: var(--dark-blue);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .author-card p {
-            color: var(--text-gray);
-            font-size: 0.85rem;
-            word-break: break-all;
-        }
-
-        .author-role {
-            display: inline-block;
-            background-color: white;
-            color: var(--accent-green);
-            padding: 0.25rem 0.75rem;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-top: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-blue);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .footer-meta {
-            margin-bottom: 1rem;
-        }
-
-        .footer-meta p {
-            margin: 0.5rem 0;
-        }
-
-        /* Responsivo */
-        @media (max-width: 768px) {
-            header {
-                padding: 3rem 1.5rem;
-            }
-
-            header h1 {
-                font-size: 2.2rem;
-            }
-
-            header p {
-                font-size: 0.95rem;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            section {
-                padding: 2.5rem 0;
-            }
-
-            .preserved-places-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 2rem 1rem;
-            }
-
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            header p {
-                font-size: 0.9rem;
-            }
-
-            section h2 {
-                font-size: 1.3rem;
-            }
-
-            .benefits-grid,
-            .scope-list,
-            .authors-grid,
-            .preserved-places-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .place-image {
-                height: 180px;
-            }
-
-            .place-content {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header -->
     <header>
         <span class="header-badge">Projeto de Pesquisa 2026</span>
 
@@ -464,10 +20,8 @@
         </p>
     </header>
 
-    <!-- Conteúdo Principal -->
     <main class="container">
 
-        <!-- Objetivo -->
         <section id="objetivo">
             <h2>Objetivo</h2>
 
@@ -488,7 +42,6 @@
             </div>
         </section>
 
-        <!-- Benefícios -->
         <section id="beneficios">
             <h2>Benefícios da Digitalização</h2>
 
@@ -551,7 +104,6 @@
             </div>
         </section>
 
-        <!-- Escopo -->
         <section id="escopo">
             <h2>Escopo Tecnológico</h2>
 
@@ -608,7 +160,6 @@
             </div>
         </section>
 
-        <!-- Patrimônio em Foco -->
         <section id="patrimonio">
             <h2>Patrimônio em Foco</h2>
 
@@ -622,31 +173,16 @@
             </p>
         </section>
 
-        <!-- Locais Preservados -->
         <section id="locais-preservados">
 
             <h2>Locais Preservados</h2>
 
-            <div style="
-                background-color: #fef3c7;
-                border-left: 4px solid #d97706;
-                padding: 1.5rem;
-                border-radius: 6px;
-                margin-bottom: 2.5rem;
-            ">
-                <p style="
-                    color: #92400e;
-                    font-weight: 600;
-                    margin: 0;
-                ">
+            <div class="development-notice">
+                <p class="development-title">
                     ⚙️ Projeto em Desenvolvimento
                 </p>
 
-                <p style="
-                    color: #b45309;
-                    margin: 0.5rem 0 0 0;
-                    font-size: 0.95rem;
-                ">
+                <p class="development-text">
                     Este projeto está em fase de desenvolvimento. Novos locais
                     históricos serão adicionados conforme a documentação avançar.
                 </p>
@@ -654,7 +190,6 @@
 
             <div class="preserved-places-grid">
 
-                <!-- Cemitério dos Caboclos -->
                 <div class="place-card">
 
                     <div class="place-image">
@@ -665,7 +200,7 @@
                     </div>
 
                     <div class="place-content">
-                        <a href="cemiterio.html">
+                        <a href="paginas/cemiterio.html">
                         <h3>Cemitério dos Caboclos</h3>
                         </a>
 
@@ -694,99 +229,46 @@
 
             </div>
 
-            <!-- Próximos Locais -->
-            <div style="
-                margin-top: 3rem;
-                padding: 2rem;
-                background-color: var(--light-bg);
-                border-radius: 8px;
-                text-align: center;
-            ">
+            <div class="next-places">
 
-                <h3 style="
-                    color: var(--dark-blue);
-                    margin-bottom: 1rem;
-                ">
+                <h3 class="next-places-title">
                     🔄 Próximos Locais a Documentar
                 </h3>
 
-                <p style="
-                    color: var(--text-gray);
-                    margin-bottom: 1.5rem;
-                ">
+                <p class="next-places-description">
                     Com a expansão do projeto, novos patrimônios culturais e
                     históricos de Concórdia serão preservados digitalmente,
                     incluindo:
                 </p>
 
-                <div style="
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                    gap: 1rem;
-                ">
+                <div class="next-places-grid">
 
-                    <div style="
-                        padding: 1rem;
-                        background-color: white;
-                        border-radius: 6px;
-                        border-left: 3px solid var(--accent-green);
-                    ">
-                        <p style="
-                            font-weight: 600;
-                            color: var(--dark-blue);
-                            margin-bottom: 0.5rem;
-                        ">
+                    <div class="next-place-item">
+                        <p class="next-place-title">
                             Patrimônio Arquitetônico
                         </p>
 
-                        <p style="
-                            font-size: 0.9rem;
-                            color: var(--text-gray);
-                        ">
+                        <p class="next-place-description">
                             Construções históricas do centro
                         </p>
                     </div>
 
-                    <div style="
-                        padding: 1rem;
-                        background-color: white;
-                        border-radius: 6px;
-                        border-left: 3px solid var(--accent-green);
-                    ">
-                        <p style="
-                            font-weight: 600;
-                            color: var(--dark-blue);
-                            margin-bottom: 0.5rem;
-                        ">
+                    <div class="next-place-item">
+                        <p class="next-place-title">
                             Acervo Documental
                         </p>
 
-                        <p style="
-                            font-size: 0.9rem;
-                            color: var(--text-gray);
-                        ">
+                        <p class="next-place-description">
                             Documentos e fotografias
                         </p>
                     </div>
 
-                    <div style="
-                        padding: 1rem;
-                        background-color: white;
-                        border-radius: 6px;
-                        border-left: 3px solid var(--accent-green);
-                    ">
-                        <p style="
-                            font-weight: 600;
-                            color: var(--dark-blue);
-                            margin-bottom: 0.5rem;
-                        ">
+                    <div class="next-place-item">
+                        <p class="next-place-title">
                             Manifestações Culturais
                         </p>
 
-                        <p style="
-                            font-size: 0.9rem;
-                            color: var(--text-gray);
-                        ">
+                        <p class="next-place-description">
                             Eventos e tradições locais
                         </p>
                     </div>
@@ -796,7 +278,6 @@
 
         </section>
 
-        <!-- Autores -->
         <section id="autores">
             <h2>Equipe do Projeto</h2>
 
@@ -835,7 +316,6 @@
             </div>
         </section>
 
-        <!-- Sobre -->
         <section id="sobre">
             <h2>Sobre</h2>
 
@@ -847,11 +327,7 @@
                 Campus Concórdia — Santa Catarina, Brasil
             </p>
 
-            <p class="objective-text" style="
-                margin-top: 1.5rem;
-                color: var(--text-gray);
-                font-size: 0.95rem;
-            ">
+            <p class="objective-text about-description">
                 Este trabalho demonstra que a digitalização representa uma
                 importante ferramenta para a conservação cultural de Concórdia,
                 unindo tradição e inovação. A aplicação dessas tecnologias
@@ -864,7 +340,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer>
 
         <div class="footer-meta">
@@ -877,10 +352,7 @@
                 Conservação e Divulgação da História do Município de Concórdia
             </p>
 
-            <p style="
-                margin-top: 1rem;
-                font-size: 0.8rem;
-            ">
+            <p class="footer-campus">
                 Instituto Federal Catarinense — Campus Concórdia
             </p>
 
